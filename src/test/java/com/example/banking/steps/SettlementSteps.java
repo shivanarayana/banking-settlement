@@ -23,8 +23,8 @@ public class SettlementSteps {
         // configuration loaded by Spring
     }
 
-    @Given("a loan account {string} exists with maturity date {string}")
-    public void aLoanAccountExistsWithMaturityDate(String accountId, String date) {
+    @Given("a loan account {string} exists with maturity date")
+    public void aLoanAccountExistsWithMaturityDate(String accountId) {
         this.targetAccountId = accountId;
     }
 
