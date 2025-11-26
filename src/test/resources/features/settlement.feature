@@ -17,9 +17,13 @@ Feature: Loan Settlement Maturity Validation
     # Logic: ~6 months difference. > 5.
     Then the settlement status should be "DONE"
 
-  Scenario: Settlement accepted because it is well in advance
-    # User Logic: Submitted > 30 days (example) -> DONE
+  Scenario: Settlement fails because maturity date is missing
     Given a loan account "LOAN-104" exists with maturity date
+    When a settlement request is submitted on "2025-01-01"
+    Then the settlement status should be "NO_MATURITY_DATE"
+
+  Scenario: Settlement accepted because it is well in advance
+    # User Logic: NO DATA PRESENT IN DATABASE -> NOT_FOUND
+    Given a loan account "LOAN-105" exists with maturity date
     When a settlement request is submitted on "2025-06-01"
-    # Logic: ~6 months difference. > 5.
     Then the settlement status should be "ACCOUNT_NOT_FOUND"

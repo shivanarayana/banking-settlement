@@ -34,6 +34,10 @@ public class SettlementService {
 
         LoanAccount account = accountOpt.get();
 
+        if (account.getMaturityDate() == null) {
+            return "NO_MATURITY_DATE";
+        }
+
         // 2. Calculate days until maturity
         long daysUntilMaturity = ChronoUnit.DAYS.between(requestDate, account.getMaturityDate());
 
